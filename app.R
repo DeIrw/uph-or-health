@@ -1,9 +1,9 @@
 library(shiny)
 library(plotly)
 library(shinyjs)
-#UI FILE------------------
+library(jsonlite)
+
 ui <- fluidPage(
-  # includeCSS("styles.css"),
   headerPanel(h1("Streaming Example", align = "center")),
   br(),
   br(),
@@ -11,11 +11,8 @@ ui <- fluidPage(
   div(plotlyOutput("plot"), id='graph'),
   useShinyjs()
 )
-#//------------//
 
-#SERVER FILE------------------
 server <- function(input, output, session) {
-  library(jsonlite)
   data = fromJSON("http://ihealth.sepdek.net/")
   dataHealth <- as.data.frame(data)
   
